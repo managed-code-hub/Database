@@ -10,6 +10,7 @@ using Xunit.Abstractions;
 
 namespace ManagedCode.Database.Tests.DynamoDbTests;
 
+#if DYNAMO_DB || DEBUG
 [Collection(nameof(DynamoDBTestContainer))]
 public class DynamoDbCollectionTests : BaseCollectionTests<string, TestDynamoDbItem>
 {
@@ -103,3 +104,4 @@ public class DynamoDbCollectionTests : BaseCollectionTests<string, TestDynamoDbI
         updateItem.Should().BeNull();
     }
 }
+#endif

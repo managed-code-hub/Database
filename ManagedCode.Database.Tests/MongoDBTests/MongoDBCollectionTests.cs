@@ -9,6 +9,7 @@ using Xunit.Abstractions;
 
 namespace ManagedCode.Database.Tests.MongoDBTests;
 
+#if MONGO_DB || DEBUG
 [Collection(nameof(MongoDBTestContainer))]
 public class MongoDBCollectionTests : BaseCollectionTests<ObjectId, TestMongoDBItem>
 {
@@ -16,3 +17,4 @@ public class MongoDBCollectionTests : BaseCollectionTests<ObjectId, TestMongoDBI
     {
     }
 }
+#endif

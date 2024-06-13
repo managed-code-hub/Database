@@ -13,6 +13,7 @@ using Xunit.Abstractions;
 
 namespace ManagedCode.Database.Tests.AzureTablesTests;
 
+#if AZURE_TABLES || DEBUG
 [Collection(nameof(AzureTablesTestContainer))]
 public class AzureTablesCollectionTests : BaseCollectionTests<TableId, TestAzureTablesItem>
 {
@@ -87,3 +88,4 @@ public class AzureTablesCollectionTests : BaseCollectionTests<TableId, TestAzure
         await countAction.Should().ThrowExactlyAsync<DatabaseException>();
     }
 }
+#endif

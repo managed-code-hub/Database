@@ -13,7 +13,7 @@ public class ZoneTreeTestContainer : ITestContainer<string, TestZoneTreeItem>
 
     public ZoneTreeTestContainer()
     {
-        var databasePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}");
+        var databasePath  = Path.Combine(Environment.CurrentDirectory, $"zone{Guid.NewGuid():N}");
 
         _database = new ZoneTreeDatabase(new ZoneTreeOptions()
         {

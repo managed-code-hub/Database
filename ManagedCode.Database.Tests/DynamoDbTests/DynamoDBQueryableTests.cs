@@ -9,6 +9,7 @@ using Xunit.Abstractions;
 
 namespace ManagedCode.Database.Tests.DynamoDbTests;
 
+#if DYNAMO_DB || DEBUG
 [Collection(nameof(DynamoDBTestContainer))]
 public class DynamoDBQueryableTests : BaseQueryableTests<string, TestDynamoDbItem>
 {
@@ -56,3 +57,4 @@ public class DynamoDBQueryableTests : BaseQueryableTests<string, TestDynamoDbIte
             .ThrowAsync<ArgumentNullException>();
     }
 }
+#endif

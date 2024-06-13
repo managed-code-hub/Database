@@ -9,6 +9,7 @@ using Xunit.Abstractions;
 
 namespace ManagedCode.Database.Tests.CosmosTests;
 
+#if COSMOS_DB || DEBUG
 [Collection(nameof(CosmosTestContainer))]
 public class CosmosQueryableTests : BaseQueryableTests<string, TestCosmosItem>
 {
@@ -109,3 +110,4 @@ public class CosmosQueryableTests : BaseQueryableTests<string, TestCosmosItem>
         await baseMethod.Should().ThrowExactlyAsync<ArgumentException>();
     }
 }
+#endif

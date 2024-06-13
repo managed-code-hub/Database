@@ -6,28 +6,168 @@ on:
   pull_request:
     branches: [ main ]
   
+env:
+  DOT_NET_VERSION: "7.0.x"
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-jobs:
   
-  build-and-test:
+jobs:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 7.0.x
-        
-        # run build and test           
+          dotnet-version: ${{ env.DOT_NET_VERSION }}
+               
       - name: Restore dependencies
         run: dotnet restore
-      - name: Build
-        run: dotnet build --no-restore
+      - name: build
+        run: dotnet build
+
+  in-memory:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOT_NET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: build
+        run: dotnet build -p:DefineConstants=IN_MEMORY
       - name: Test
-        run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=ManagedCode.Repository.Tests/lcov.info
+        run: dotnet test --no-build
+
+  lite-db:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOT_NET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: build
+        run: dotnet build -p:DefineConstants=LITE_DB
+      - name: Test
+        run: dotnet test --no-build
+        
+  sqlite:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOT_NET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: build
+        run: dotnet build -p:DefineConstants=SQLITE
+      - name: Test
+        run: dotnet test --no-build
+    
+  zone-tree:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOT_NET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: build
+        run: dotnet build -p:DefineConstants=ZONE_TREE
+      - name: Test
+        run: dotnet test --no-build   
+        
+        
+  cosmos-db:
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - uses: janpio/cosmos-emulator-github-action@main
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOT_NET_VERSION }}
+               
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: build
+        run: dotnet build -p:DefineConstants=COSMOS_DB
+      - name: Test
+        run: dotnet test --no-build
+       
+  azure-tables:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOT_NET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: build
+        run: dotnet build -p:DefineConstants=AZURE_TABLES
+      - name: Test
+        run: dotnet test --no-build
+
+  mongo-db:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOT_NET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: build
+        run: dotnet build -p:DefineConstants=MONGO_DB
+      - name: Test
+        run: dotnet test --no-build
+        
+  dynamo-db:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOT_NET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: build
+        run: dotnet build -p:DefineConstants=DYNAMO_DB
+      - name: Test
+        run: dotnet test --no-build
+
+
+
 
       #- name: coverlet
       #  uses: b3b00/coverlet-action@1.1.9

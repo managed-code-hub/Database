@@ -7,11 +7,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using ManagedCode.Database.Tests.TestContainers;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace ManagedCode.Database.Tests.BaseTests;
 
 public abstract class BaseCollectionTests<TId, TItem> : BaseTests<TId, TItem> where TItem : IBaseItem<TId>, new()
 {
+
     protected BaseCollectionTests(ITestContainer<TId, TItem> testContainer) : base(testContainer)
     {
     }

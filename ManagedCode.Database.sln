@@ -27,6 +27,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedCode.Database.ZoneTr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedCode.Database.DynamoDB", "ManagedCode.Database.DynamoDB\ManagedCode.Database.DynamoDB.csproj", "{ED12ED3C-F0FB-4BC1-A283-BF6E74BA99A2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orleans", "Orleans", "{6408F3FF-28A1-4377-84A6-FCE0548AC306}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedCode.Database.Orleans.Persistence", "Orleans\ManagedCode.Database.Orleans.Persistence\ManagedCode.Database.Orleans.Persistence.csproj", "{0558E9C2-D608-49F0-A094-9AEA0BAB800E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +77,10 @@ Global
 		{ED12ED3C-F0FB-4BC1-A283-BF6E74BA99A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED12ED3C-F0FB-4BC1-A283-BF6E74BA99A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED12ED3C-F0FB-4BC1-A283-BF6E74BA99A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0558E9C2-D608-49F0-A094-9AEA0BAB800E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0558E9C2-D608-49F0-A094-9AEA0BAB800E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0558E9C2-D608-49F0-A094-9AEA0BAB800E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0558E9C2-D608-49F0-A094-9AEA0BAB800E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +95,7 @@ Global
 		{46AD78EF-B94E-44C2-8CFE-13E8851610F8} = {B34993FC-20CB-4E46-86D7-8B8A30B3FABE}
 		{8F382CD4-7E0A-41E1-BB91-96E58F3F166C} = {9D86DFE5-1381-4621-8AC4-DC502CE5F43B}
 		{ED12ED3C-F0FB-4BC1-A283-BF6E74BA99A2} = {9D86DFE5-1381-4621-8AC4-DC502CE5F43B}
+		{0558E9C2-D608-49F0-A094-9AEA0BAB800E} = {6408F3FF-28A1-4377-84A6-FCE0548AC306}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {481455E7-0A98-4AB2-9F00-F32D40AB884D}

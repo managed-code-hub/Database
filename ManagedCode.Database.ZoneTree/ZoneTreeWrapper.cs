@@ -102,7 +102,9 @@ internal class ZoneTreeWrapper<TKey, TValue> : IDisposable
 
     public void DeleteAll()
     {
-        _zoneTree.Maintenance.DestroyTree();
+        using var iterator = _zoneTree.CreateIterator();
+        while (iterator.Next()) 
+            _zoneTree.TryDelete(iterator.CurrentKey);
     }
 
     public long Count()
@@ -114,7 +116,8 @@ internal class ZoneTreeWrapper<TKey, TValue> : IDisposable
     public IEnumerable<TValue?> Enumerate()
     {
         using var iterator = _zoneTree.CreateIterator();
-        while (iterator.Next()) yield return iterator.CurrentValue;
+        while (iterator.Next()) 
+            yield return iterator.CurrentValue;
     }
 
     public IEnumerable<TValue?> EnumerateReverse()
